@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tasktracker">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/" />
+    <title>Tast Tracker</title>
+    <!--<link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/styles.css">-->
+</head>
+<body>
+<loader></loader>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="projects">Task Tracker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul ng-if="user" class="nav navbar-nav">
+                <li ui-sref="projects" ui-sref-active="active"><a ui-sref="projects" ui-sref-active="active">Projects</a></li>
+                <li ui-sref="users" ui-sref-active="active"><a ui-sref="users" ui-sref-active="active">Users</a></li>
+                <li ui-sref="user({id: user.id})" ui-sref-active="active"><a ui-sref="user({id: user.id})" ui-sref-active="active">My profile</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!user" ui-sref="signup" ui-sref-active="active"><a ui-sref="signup" ui-sref-active="active">Sing Up</a></li>
+                <li ng-if="!user" ui-sref="signin" ui-sref-active="active"><a ui-sref="signin" ui-sref-active="active">Sign In</a></li>
+                <li ng-if="user" ui-sref="signout" ui-sref-active="active"><a ui-sref="signout" ui-sref-active="active">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="main">
+    <div class="container">
+        <ui-view>LOADING...</ui-view>
+    </div>
+</div>
+</body>
+</html>

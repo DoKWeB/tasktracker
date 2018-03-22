@@ -1,0 +1,40 @@
+<h2>Edit Task</h2>
+<form ng-submit="editTaskForm.$valid && $ctrl.edit()" name="editTaskForm" novalidate>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Name" name="name" ng-model="$ctrl.task.name" required>
+    <span class="text-danger" ng-if="editTaskForm.name.$error.required">Name is required</span>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" id="description" name="description" placeholder="Description" ng-model="$ctrl.task.description" required></textarea>
+    <span class="text-danger" ng-if="editTaskForm.description.$error.required">Description is required</span>
+  </div>
+  <div class="form-group">
+    <label for="date">Due date</label>
+    <input type="date" class="form-control" id="date" ng-model="$ctrl.task.date" name="date" required>
+    <span class="text-danger" ng-if="editTaskForm.date.$error.required">Date is required</span>
+  </div>
+  <div class="form-group">
+    <label for="priority">Priority</label>
+    <select id="priority" ng-model="$ctrl.task.priority" name="priority" class="form-control" required>
+      <option value="">Select priority</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <span class="text-danger" ng-if="editTaskForm.priority.$error.required">Priority is required</span>
+  </div>
+  <div class="form-group">
+    <label>Executor</label>
+    <div class="form-users">
+      <div ng-repeat="user in $ctrl.users">
+        <label>
+          <input type="radio" name="executor" ng-model="$ctrl.task.executor_id" value="{{user.id}}" ng-checked="$ctrl.task.executor_id==user.id" ng-required="!$ctrl.task.executor_id"> {{user.name}}
+        </label>
+      </div>
+      <span class="text-danger" ng-if="!$ctrl.task.executor_id">Executor is required</span>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-default">Edit task</button>
+</form>

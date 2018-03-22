@@ -1,0 +1,16 @@
+<form class="form-signin" name="signin" ng-submit="signin.$valid && $ctrl.signin()">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <div class="signin-error">{{$ctrl.error}}</div>
+    <div>
+        <strong>Email:</strong> alex@mail.ru<br>
+        <strong>Password:</strong> qwerty
+    </div><br>
+    <label for="inputEmail" class="sr-only">Email</label>
+    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus="" ng-model="$ctrl.email">
+    <span class="text-danger" ng-if="signin.email.$error.required">Email is required</span>
+    <span class="text-danger" ng-if="signin.email.$error.email">Email has wrong format</span>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="$ctrl.password">
+    <span class="text-danger" ng-if="signin.password.$error.required">Password is required</span>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>

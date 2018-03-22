@@ -1,0 +1,35 @@
+<div class="row">
+  <ol class="breadcrumb">
+    <li><a ui-sref="projects">Projects</a></li>
+    <li><a ui-sref="project({id: $ctrl.project.id})">{{$ctrl.project.name}}</a></li>
+    <li class="active">{{$ctrl.task.name}}</li>
+  </ol>
+  <h3>{{$ctrl.task.name}}</h3>
+  <div class="btn-group btn-group-justified" role="group" ng-if="$ctrl.user.id == $ctrl.author.id || $ctrl.user.id == $ctrl.executor.id">
+    <div class="btn-group" role="group">
+      <button class="btn btn-success" ng-click="$ctrl.complete()" ng-if="$ctrl.status==1"><span class="glyphicon glyphicon-ok"></span></button>
+      <button class="btn btn-info" ng-click="$ctrl.reopen()" ng-if="$ctrl.status==2"><span class="glyphicon glyphicon-refresh"></span></button>
+    </div>
+    <div class="btn-group" role="group">
+      <a class="btn btn-warning" ui-sref="edit-task({projectId:$ctrl.project.id,taskId:$ctrl.task.id})"><span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
+    <div class="btn-group" role="group" ng-if="$ctrl.user.id == $ctrl.author.id || $ctrl.user.id == $ctrl.executor.id">
+      <button class="btn btn-danger" ng-click="$ctrl.delete()"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+  </div>
+  <div class="center-text task-params">
+    <strong>Date:</strong> <em>{{$ctrl.task.date | date : 'dd.MM.yyyy'}}</em> |
+    <strong>Status:</strong> <em>{{::$ctrl.task.status}}</em> |
+    <strong>Priority:</strong> <em>{{$ctrl.task.priority}}</em> | 
+    <strong>Author:</strong> <a ui-sref="user({id: $ctrl.author.id})">{{$ctrl.author.name}}</a> | 
+    <strong>Executor:</strong> <a ui-sref="user({id: $ctrl.executor.id})">{{$ctrl.executor.name}}</a>
+  </div>
+  <h4>Description</h4>
+  <div class="task-description">
+    {{$ctrl.task.description}}
+  </div>
+  <div class="task-comments">
+    <h4>Comments</h4>
+    <dir-disqus config="$ctrl.disqusConfig" ng-if="$ctrl.disqusConfig"></dir-disqus>
+  </div>
+</div>
